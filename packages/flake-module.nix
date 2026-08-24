@@ -19,6 +19,7 @@ let
       artPackages = import ./art { inherit callPackage; };
       pythonPackages = import ./python { inherit python3Packages; };
       goPackages = import ./go { inherit callPackage; };
+      qemuPackages = import ./qemu { inherit callPackage; };
       rustPackages = import ./rust {
         inherit callPackage;
         inherit crane;
@@ -29,7 +30,13 @@ let
         update-deps = callPackage ./update-deps { };
       };
     in
-    artPackages // pythonPackages // goPackages // rustPackages // cppPackages // utilityPackages;
+    artPackages
+    // pythonPackages
+    // goPackages
+    // qemuPackages
+    // rustPackages
+    // cppPackages
+    // utilityPackages;
 in
 {
   perSystem =
